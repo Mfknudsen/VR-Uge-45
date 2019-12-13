@@ -11,11 +11,18 @@ public class Test : MonoBehaviour
     [Tooltip("Getting the Trigger input from the controllers")]
     public SteamVR_Action_Boolean trigger = SteamVR_Input.GetBooleanAction("GrabPinch");
 
+    [Tooltip("Setting up the left hand controller")]
     public SteamVR_Behaviour_Pose trackedHandLeft;
+
+    [Tooltip("Setting up the right hand controller")]
     public SteamVR_Behaviour_Pose trackedHandRight;
 
     Transform HL;
     Transform HR;
+    
+    SteamVR_Action_Vector2 trackPad = SteamVR_Input.GetVector2Action("TrackPad");
+
+
     void Start()
     {
 
