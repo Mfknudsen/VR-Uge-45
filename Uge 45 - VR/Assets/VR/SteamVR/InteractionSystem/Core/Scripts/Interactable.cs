@@ -314,6 +314,8 @@ namespace Valve.VR.InteractionSystem
             }
 
             attachedToHand = null;
+
+            //Here is the object released
         }
 
         protected virtual void OnDestroy()

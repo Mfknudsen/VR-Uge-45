@@ -1,15 +1,21 @@
-﻿using System.Collections;
+﻿#region Systems
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+#endregion
 
 public class Test : MonoBehaviour
 {
+    #region public DATA
+    [Header("VR Settings")]
+    [Tooltip("Setting the controller reference")]
     public SteamVR_Input_Sources LeftHand;
+    [Tooltip("Setting the controller reference")]
     public SteamVR_Input_Sources RightHand;
 
     [Tooltip("Getting the Trigger input from the controllers")]
-    public SteamVR_Action_Boolean trigger = SteamVR_Input.GetBooleanAction("GrabPinch");
+    public SteamVR_Action_Boolean trigger;
 
     [Tooltip("Setting up the left hand controller")]
     public SteamVR_Behaviour_Pose trackedHandLeft;
@@ -17,15 +23,20 @@ public class Test : MonoBehaviour
     [Tooltip("Setting up the right hand controller")]
     public SteamVR_Behaviour_Pose trackedHandRight;
 
-    Transform HL;
-    Transform HR;
-    
-    SteamVR_Action_Vector2 trackPad = SteamVR_Input.GetVector2Action("TrackPad");
+    #endregion
 
+    #region private Data
+    private Transform HL;
+    private Transform HR;
+
+    private SteamVR_Action_Vector2 trackPad;
+
+    #endregion
 
     void Start()
     {
-
+        trackPad = SteamVR_Input.GetVector2Action("TrackPad");
+        trigger = SteamVR_Input.GetBooleanAction("GrabPinch");
     }
 
     void Update()
@@ -36,8 +47,10 @@ public class Test : MonoBehaviour
 
     void UpdateLeftHandPoint()
     {
-        HL.transform.position = trackedHandLeft.transform.position;
+        //HL.transform.position = trackedHandLeft.transform.position;
         HL.transform.rotation = trackedHandLeft.transform.rotation;
+
+        HL.transform.position = Vector3.Lerp(HL.transform.position, trackedHandLeft.transform.position, 0.9f);
 
         if (trigger.GetState(LeftHand))
         {
