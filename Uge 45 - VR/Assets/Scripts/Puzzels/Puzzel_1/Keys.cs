@@ -12,7 +12,7 @@ public class Keys : MonoBehaviour
     public Interactable VR_HAND;
 
     [HideInInspector]
-    public string keyword = "";
+    public string keyword;
 
     [HideInInspector]
     public Puzzel_1 P1;
@@ -36,7 +36,7 @@ public class Keys : MonoBehaviour
     #region private Data
     Rigidbody RB;
     #endregion
-    void Start()
+    private void Start()
     {
         RB = GetComponent<Rigidbody>();
         VR_HAND = GetComponent<Interactable>();
@@ -45,7 +45,7 @@ public class Keys : MonoBehaviour
         originalRotation = transform.rotation;
     }
 
-    void Update()
+    private void Update()
     {
         if (PLACE_KEY == true)
         {

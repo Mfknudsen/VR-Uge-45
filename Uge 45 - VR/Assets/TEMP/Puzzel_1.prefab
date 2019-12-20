@@ -924,6 +924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d47d4d316db26d4caf0371ee38aed55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oSC: {fileID: 0}
   keys:
   - {fileID: 796057968285723248}
   - {fileID: 796057968756073685}

@@ -7,6 +7,12 @@ using UnityEngine;
 public class Puzzel_1 : MonoBehaviour
 {
     #region public DATA
+    [HideInInspector]
+    public OSC osc;
+
+    [HideInInspector]
+    public bool PuzzelComplete = false;
+
     [Header("Required Input:")]
     [Tooltip("Order of object determins the order they need to be placed")]
     public List<GameObject> keys = new List<GameObject>();
@@ -14,15 +20,13 @@ public class Puzzel_1 : MonoBehaviour
     [Tooltip("Order of object determins the order they need to be placed")]
     public List<GameObject> keyholes = new List<GameObject>();
 
-    [HideInInspector]
-    public bool PuzzelComplete = false;
-
     [Header("Optional Input:")]
     public string keyword = "Puzzel_1_Key";
 
     [Header("TEMP BOTTUMS:")]
     [Tooltip("IF PRESSED: WILL RESET POSITION OF KEYS TO START POSITION")]
     public bool RESET_KEY_POSITION = false;
+    [Tooltip("IF PRESSED: WILL ADD GRAVITY TO THE KEY OBJECTS")]
     public bool ADD_GRAVITY = false;
     #endregion
 
@@ -31,6 +35,8 @@ public class Puzzel_1 : MonoBehaviour
 
     void Start()
     {
+        osc = GameObject.Find("OSC").GetComponent<OSC>();
+
         if (keys.Count > 0)
         {
             for (int i = 0; i < keys.Count; i++)
@@ -86,19 +92,17 @@ public class Puzzel_1 : MonoBehaviour
     {
         for (var i = 0; i < keys.Count; i++)
         {
-            Keys k = keys[i].GetComponent<Keys>();
-            k.reset();
+            keys[i].GetComponent<Keys>().reset();
         }
 
         RESET_KEY_POSITION = false;
     }
 
-    void addGrav()
+    void AddGrav()
     {
         for (var i = 0; i < keys.Count; i++)
         {
-            Keys k = keys[i].GetComponent<Keys>();
-            k.addGrav();
+            keys[i].GetComponent<Keys>().addGrav();
         }
 
         ADD_GRAVITY = false;
@@ -108,8 +112,12 @@ public class Puzzel_1 : MonoBehaviour
     void TEMP_ACTIONS()
     {
         if (RESET_KEY_POSITION)
+        {
             ResetKeys();
+        }
         if (ADD_GRAVITY)
-            addGrav();
+        {
+            AddGrav();
+        }
     }
 }

@@ -521,5 +521,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puzzel_1
       objectReference: {fileID: 0}
+    - target: {fileID: 796057969664196942, guid: 15ace0bd0d25d6f44baa7516dad916b7,
+        type: 3}
+      propertyPath: oSC
+      value: 
+      objectReference: {fileID: 968486710}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ace0bd0d25d6f44baa7516dad916b7, type: 3}

@@ -8,8 +8,8 @@ public class Keyholes : MonoBehaviour
 {
     #region  public DATA
     [HideInInspector]
-    public string keyword = "";
-    
+    public string keyword;
+
     [HideInInspector]
     public Puzzel_1 P1;
 
@@ -44,11 +44,12 @@ public class Keyholes : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Keys>() != null)
         {
-            if (other.gameObject.GetComponent<Keys>().currentKeyhole == null    )
+            Keys k = other.gameObject.GetComponent<Keys>();
+
+            if (k.currentKeyhole == null && k.keyword == keyword)
             {
                 keysInRange += 1;
                 Visual.enabled = true;
-                Keys k = other.gameObject.GetComponent<Keys>();
                 int i = k.keyholesInRange.Count;
                 k.keyholesInRange.Add(this.gameObject);
             }
@@ -64,13 +65,18 @@ public class Keyholes : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Keys>() != null)
         {
-            keysInRange -= 1;
             Keys k = other.gameObject.GetComponent<Keys>();
-            for (int i = 0; i < k.keyholesInRange.Count; i++)
+
+            if (k.keyword == keyword)
             {
-                if (k.keyholesInRange[i] == this.gameObject)
+                keysInRange -= 1;
+
+                for (int i = 0; i < k.keyholesInRange.Count; i++)
                 {
-                    k.keyholesInRange.RemoveAt(i);
+                    if (k.keyholesInRange[i] == this.gameObject)
+                    {
+                        k.keyholesInRange.RemoveAt(i);
+                    }
                 }
             }
         }
@@ -85,13 +91,5 @@ public class Keyholes : MonoBehaviour
     {
         currentKey.transform.position = transform.position;
         currentKey.transform.rotation = transform.rotation;
-    }
-
-    public void PlaceKey(GameObject key)
-    {
-        currentKey = key;
-        currentKey.transform.position = transform.position;
-        currentKey.transform.rotation = transform.rotation;
-        currentKey.transform.localScale = transform.localScale;
     }
 }
