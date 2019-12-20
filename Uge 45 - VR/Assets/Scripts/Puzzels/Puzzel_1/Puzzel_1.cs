@@ -7,18 +7,20 @@ using UnityEngine;
 public class Puzzel_1 : MonoBehaviour
 {
     #region public DATA
-    [Header("Required Input")]
+    [Header("Required Input:")]
     [Tooltip("Order of object determins the order they need to be placed")]
     public List<GameObject> keys = new List<GameObject>();
 
+    [Tooltip("Order of object determins the order they need to be placed")]
     public List<GameObject> keyholes = new List<GameObject>();
 
     [HideInInspector]
-    public bool succes = false;
+    public bool PuzzelComplete = false;
 
+    [Header("Optional Input:")]
     public string keyword = "Puzzel_1_Key";
 
-    [Header("TEMP BOTTUMS")]
+    [Header("TEMP BOTTUMS:")]
     [Tooltip("IF PRESSED: WILL RESET POSITION OF KEYS TO START POSITION")]
     public bool RESET_KEY_POSITION = false;
     public bool ADD_GRAVITY = false;
@@ -54,15 +56,12 @@ public class Puzzel_1 : MonoBehaviour
     {
         CheckOrder();
 
-        if (RESET_KEY_POSITION)
-            ResetKeys();
-        if (ADD_GRAVITY)
-            addGrav();
+        TEMP_ACTIONS();
     }
 
     void CheckOrder()
     {
-        if (keyholes.Count == 3 && keys.Count == 3 && !succes)
+        if (keyholes.Count == 3 && keys.Count == 3 && !PuzzelComplete)
         {
             int t = 0;
 
@@ -77,7 +76,7 @@ public class Puzzel_1 : MonoBehaviour
             }
             if (t == 3)
             {
-                succes = true;
+                PuzzelComplete = true;
                 Debug.Log("Puzzel 1 has been solved!");
             }
         }
@@ -103,5 +102,14 @@ public class Puzzel_1 : MonoBehaviour
         }
 
         ADD_GRAVITY = false;
+    }
+
+
+    void TEMP_ACTIONS()
+    {
+        if (RESET_KEY_POSITION)
+            ResetKeys();
+        if (ADD_GRAVITY)
+            addGrav();
     }
 }

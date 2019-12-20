@@ -8,19 +8,26 @@ using Valve.VR.InteractionSystem;
 public class Keys : MonoBehaviour
 {
     #region public Data
+    [HideInInspector]
     public Interactable VR_HAND;
 
     [HideInInspector]
     public string keyword = "";
+
     [HideInInspector]
     public Puzzel_1 P1;
 
     [HideInInspector]
     public Vector3 originalPosition;
+
     [HideInInspector]
     public Quaternion originalRotation;
 
+    [HideInInspector]
     public List<GameObject> keyholesInRange = new List<GameObject>(); //For dynamic editing use list instead of arrays!! --- Lenght == Count, Add("Thing to add"), Remove(index)
+
+    [HideInInspector]
+    public GameObject currentKeyhole;
 
     [Header("TEMP BUTTOMS")]
     public bool PLACE_KEY = false;
@@ -28,13 +35,11 @@ public class Keys : MonoBehaviour
 
     #region private Data
     Rigidbody RB;
-
-    GameObject currentKeyhole;
     #endregion
     void Start()
     {
-        VR_HAND = GetComponent<Interactable>();
         RB = GetComponent<Rigidbody>();
+        VR_HAND = GetComponent<Interactable>();
         RB.useGravity = false;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
@@ -93,6 +98,17 @@ public class Keys : MonoBehaviour
                     currentKeyhole = closestKeyhole;
                     k.currentKey = this.gameObject;
                     RB.isKinematic = true;
+
+                    for (int i = 0; i < keyholesInRange.Count; i++)
+                    {
+                        k = keyholesInRange[i].GetComponent<Keyholes>();
+                        k.keysInRange -= 1;
+
+                        if (k.keysInRange <= 0)
+                        {
+                            k.GetComponent<Keyholes>().Visual.enabled = false;
+                        }
+                    }
                 }
             }
         }

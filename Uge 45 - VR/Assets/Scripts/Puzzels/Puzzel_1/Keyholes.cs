@@ -7,17 +7,23 @@ using UnityEngine;
 public class Keyholes : MonoBehaviour
 {
     #region  public DATA
+    [HideInInspector]
     public string keyword = "";
-
+    
+    [HideInInspector]
     public Puzzel_1 P1;
 
+    [HideInInspector]
     public GameObject currentKey;
+
+    [HideInInspector]
+    public int keysInRange = 0;
+
+    [HideInInspector]
+    public MeshRenderer Visual;
     #endregion
 
     #region private DATA
-    MeshRenderer Visual;
-
-    int keysInRange = 0;
     #endregion
 
     void Start()
@@ -38,11 +44,14 @@ public class Keyholes : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Keys>() != null)
         {
-            keysInRange += 1;
-            Visual.enabled = true;
-            Keys k = other.gameObject.GetComponent<Keys>();
-            int i = k.keyholesInRange.Count;
-            k.keyholesInRange.Add(this.gameObject);
+            if (other.gameObject.GetComponent<Keys>().currentKeyhole == null    )
+            {
+                keysInRange += 1;
+                Visual.enabled = true;
+                Keys k = other.gameObject.GetComponent<Keys>();
+                int i = k.keyholesInRange.Count;
+                k.keyholesInRange.Add(this.gameObject);
+            }
         }
 
         if (keysInRange > 0)
@@ -66,7 +75,7 @@ public class Keyholes : MonoBehaviour
             }
         }
 
-        if (keysInRange == 0)
+        if (keysInRange <= 0)
         {
             Visual.enabled = false;
         }

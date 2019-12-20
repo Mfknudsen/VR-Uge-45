@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 796057968135283819}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6, y: 0, z: -0.15}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.075, y: 0.075, z: 0.075}
   m_Children: []
   m_Father: {fileID: 796057969664196914}
   m_RootOrder: 2
@@ -109,6 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyword: 
   P1: {fileID: 0}
+  currentKey: {fileID: 0}
+  keysInRange: 0
+  Visual: {fileID: 0}
 --- !u!135 &796057968135283793
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -120,7 +123,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &796057968285723248
 GameObject:
@@ -136,6 +139,7 @@ GameObject:
   - component: {fileID: 796057968285723250}
   - component: {fileID: 796057968285723249}
   - component: {fileID: 290532225}
+  - component: {fileID: 1871580526}
   m_Layer: 0
   m_Name: Key (1)
   m_TagString: Untagged
@@ -229,9 +233,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25b574d89e37c0479e936a92e57b729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VR_HAND: {fileID: 0}
   keyword: 
   P1: {fileID: 0}
   originalPosition: {x: 0, y: 0, z: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  keyholesInRange: []
+  currentKeyhole: {fileID: 0}
+  PLACE_KEY: 0
 --- !u!54 &290532225
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -248,6 +257,57 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1871580526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796057968285723248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93b6a877adcbf94c89a9d6e0c0e844d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateActionSetOnAttach:
+    actionSetPath: 
+  hideHandOnAttach: 1
+  hideSkeletonOnAttach: 0
+  hideControllerOnAttach: 0
+  handAnimationOnPickup: 0
+  setRangeOfMotionOnPickup: -1
+  useHandObjectAttachmentPoint: 1
+  attachEaseIn: 0
+  snapAttachEaseInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  snapAttachEaseInTime: 0.15
+  snapAttachEaseInCompleted: 0
+  skeletonPoser: {fileID: 0}
+  handFollowTransform: 1
+  highlightOnHover: 1
+  hideHighlight: []
 --- !u!1 &796057968432752602
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +338,7 @@ Transform:
   m_GameObject: {fileID: 796057968432752602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6, y: 0, z: 0.15}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.075, y: 0.075, z: 0.075}
   m_Children: []
   m_Father: {fileID: 796057969664196914}
   m_RootOrder: 0
@@ -357,6 +417,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyword: 
   P1: {fileID: 0}
+  currentKey: {fileID: 0}
+  keysInRange: 0
+  Visual: {fileID: 0}
 --- !u!135 &796057968432752576
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -368,7 +431,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &796057968756073685
 GameObject:
@@ -384,6 +447,7 @@ GameObject:
   - component: {fileID: 796057968756073687}
   - component: {fileID: 796057968756073686}
   - component: {fileID: 769475768229256237}
+  - component: {fileID: 784018398}
   m_Layer: 0
   m_Name: Key (2)
   m_TagString: Untagged
@@ -477,9 +541,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25b574d89e37c0479e936a92e57b729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VR_HAND: {fileID: 0}
   keyword: 
   P1: {fileID: 0}
   originalPosition: {x: 0, y: 0, z: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  keyholesInRange: []
+  currentKeyhole: {fileID: 0}
+  PLACE_KEY: 0
 --- !u!54 &769475768229256237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -496,6 +565,57 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &784018398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796057968756073685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93b6a877adcbf94c89a9d6e0c0e844d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateActionSetOnAttach:
+    actionSetPath: 
+  hideHandOnAttach: 1
+  hideSkeletonOnAttach: 0
+  hideControllerOnAttach: 0
+  handAnimationOnPickup: 0
+  setRangeOfMotionOnPickup: -1
+  useHandObjectAttachmentPoint: 1
+  attachEaseIn: 0
+  snapAttachEaseInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  snapAttachEaseInTime: 0.15
+  snapAttachEaseInCompleted: 0
+  skeletonPoser: {fileID: 0}
+  handFollowTransform: 1
+  highlightOnHover: 1
+  hideHighlight: []
 --- !u!1 &796057969501955189
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +630,8 @@ GameObject:
   - component: {fileID: 796057969501955191}
   - component: {fileID: 796057969501955190}
   - component: {fileID: 1507026310}
+  - component: {fileID: 1094638600}
+  - component: {fileID: 1094638601}
   m_Layer: 0
   m_Name: Key (3)
   m_TagString: Untagged
@@ -603,9 +725,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25b574d89e37c0479e936a92e57b729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VR_HAND: {fileID: 0}
   keyword: 
   P1: {fileID: 0}
   originalPosition: {x: 0, y: 0, z: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  keyholesInRange: []
+  currentKeyhole: {fileID: 0}
+  PLACE_KEY: 0
 --- !u!54 &1507026310
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -622,6 +749,69 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1094638600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796057969501955189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ccb30dc353213c49992251707ae9e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1094638601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796057969501955189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93b6a877adcbf94c89a9d6e0c0e844d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateActionSetOnAttach:
+    actionSetPath: 
+  hideHandOnAttach: 1
+  hideSkeletonOnAttach: 0
+  hideControllerOnAttach: 0
+  handAnimationOnPickup: 0
+  setRangeOfMotionOnPickup: -1
+  useHandObjectAttachmentPoint: 1
+  attachEaseIn: 0
+  snapAttachEaseInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  snapAttachEaseInTime: 0.15
+  snapAttachEaseInCompleted: 0
+  skeletonPoser: {fileID: 0}
+  handFollowTransform: 1
+  highlightOnHover: 1
+  hideHighlight: []
 --- !u!1 &796057969664196941
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,9 +932,10 @@ MonoBehaviour:
   - {fileID: 796057968432752602}
   - {fileID: 796057969803166609}
   - {fileID: 796057968135283819}
-  succes: 0
+  PuzzelComplete: 0
   keyword: Puzzel_1_Key
   RESET_KEY_POSITION: 0
+  ADD_GRAVITY: 0
 --- !u!1 &796057969803166609
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +966,7 @@ Transform:
   m_GameObject: {fileID: 796057969803166609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.075, y: 0.075, z: 0.075}
   m_Children: []
   m_Father: {fileID: 796057969664196914}
   m_RootOrder: 1
@@ -854,6 +1045,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyword: 
   P1: {fileID: 0}
+  currentKey: {fileID: 0}
+  keysInRange: 0
+  Visual: {fileID: 0}
 --- !u!135 &796057969803166615
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -865,5 +1059,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
