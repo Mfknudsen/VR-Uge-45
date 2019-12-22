@@ -14,15 +14,22 @@ public class Lever : MonoBehaviour
     public Transform Top;
     [HideInInspector]
     public bool active = false;
+    [HideInInspector]
+    public float progressInProcent = 0;
+
+    [Header("Optional Input")]
+    public Material material;
+
     [Header("TEMP BUTTOMS:")]
     public bool SWITCH_LOCK = false;
-    bool lockHandel = false;
+    bool lockHandel = true;
     #endregion
 
     #region private DATA
     Quaternion maxRot, minRot;
     Vector3 lookDirection;
     Quaternion targetRotation;
+    Vector3 lastHandelPosition;
     #endregion
 
     void Start()
@@ -36,11 +43,21 @@ public class Lever : MonoBehaviour
 
     void Update()
     {
-        RotateTowardsHandel();
+        if (lastHandelPosition != Handel.transform.position)
+        {
+            RotateTowardsHandel();
+            CountProcent();
+            IsActiveOrNot();
+        }
+
         LockHandelTransform();
-        CountProcent();
 
         TEMPLOCKHANDEL();
+
+        if (material != null)
+        {
+            SwitchColor();
+        }
     }
 
     void RotateTowardsHandel()
@@ -60,6 +77,8 @@ public class Lever : MonoBehaviour
             {
                 Joint.transform.localRotation = minRot;
             }
+
+            lastHandelPosition = Handel.transform.position;
         }
         else if (targetRotation.x == 0 && targetRotation.w == 0)
         {
@@ -69,6 +88,8 @@ public class Lever : MonoBehaviour
             {
                 Joint.transform.localRotation = maxRot;
             }
+
+            lastHandelPosition = Handel.transform.position;
         }
     }
 
@@ -87,6 +108,21 @@ public class Lever : MonoBehaviour
         }
 
         tempProcent = tempProcent / 3.6f;
+        progressInProcent = Mathf.Ceil(tempProcent);
+    }
+
+    void IsActiveOrNot()
+    {
+        if (progressInProcent <= 50)
+        {
+            active = false;
+        }
+        else if (progressInProcent > 50)
+        {
+            active = true;
+        }
+
+        Debug.Log(active);
     }
     void LockHandelTransform()
     {
@@ -120,6 +156,18 @@ public class Lever : MonoBehaviour
                 lockHandel = true;
                 SWITCH_LOCK = false;
             }
+        }
+    }
+
+    void SwitchColor()
+    {
+        if (active == true)
+        {
+            material.SetColor("_Color", Color.green);
+        }
+        else
+        {
+            material.SetColor("_Color", Color.red);
         }
     }
 }
