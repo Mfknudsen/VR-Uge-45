@@ -9,9 +9,6 @@ public class Keys : MonoBehaviour
 {
     #region public Data
     [HideInInspector]
-    public Interactable VR_HAND;
-
-    [HideInInspector]
     public string keyword;
 
     [HideInInspector]
@@ -39,7 +36,6 @@ public class Keys : MonoBehaviour
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
-        VR_HAND = GetComponent<Interactable>();
         RB.useGravity = false;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
@@ -73,6 +69,7 @@ public class Keys : MonoBehaviour
     public void addGrav()
     {
         RB.useGravity = true;
+        RB.isKinematic = false;
     }
 
     public void placeKey()
@@ -131,5 +128,10 @@ public class Keys : MonoBehaviour
     private void OnDetachedFromHand()
     {
         placeKey();
+    }
+
+    private void OnAttachedToHand()
+    {
+        detachKey();
     }
 }
