@@ -45,8 +45,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Puzzel_3.cs" />
-     <Compile Include="Assets\Scripts\HandDrop.cs" />
      <Compile Include="Assets\Scripts\OSC\TEST_OSC.cs" />
      <Compile Include="Assets\Scripts\OSC\UnityOSC-master\Assets\Extra\Scripts\Instantiator.cs" />
      <Compile Include="Assets\Scripts\OSC\UnityOSC-master\Assets\Extra\Scripts\ReceiveAll.cs" />
@@ -58,15 +56,38 @@
      <Compile Include="Assets\Scripts\OSC\UnityOSC-master\Assets\ReceivePosition.cs" />
      <Compile Include="Assets\Scripts\OSC\UnityOSC-master\Assets\SendPositionOnOnMouseDown.cs" />
      <Compile Include="Assets\Scripts\OSC\UnityOSC-master\Assets\SendPositionOnUpdate.cs" />
-     <Compile Include="Assets\Scripts\Puzzels\Lever\Lever.cs" />
-     <Compile Include="Assets\Scripts\Puzzels\Puzzel_1\Keyholes.cs" />
-     <Compile Include="Assets\Scripts\Puzzels\Puzzel_1\Keys.cs" />
-     <Compile Include="Assets\Scripts\Puzzels\Puzzel_1\Puzzel_1.cs" />
-     <Compile Include="Assets\Scripts\Puzzels\Puzzel_2\PressurePlate.cs" />
-     <Compile Include="Assets\Scripts\Puzzels\Puzzel_2\Puzzel_2.cs" />
-     <Compile Include="Assets\Scripts\Puzzels\Puzzel_3\PressurePlate2.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\PlayablePuzzels\Puzzel_1\DisplayScreen_1.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\PlayablePuzzels\Puzzel_1\Puzzel_1.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\PuzzelSystem\Puzzel.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_Buttom\Buttom.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_Buttom\Buttom_Handel.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_Crane\Crane.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_DisplayScreen\DisplayScreen.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_Door\Door.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_Key\Key.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_Key\Keyhole.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_Lever\Lever.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_PressurePlate\PressurePlate.cs" />
      <Compile Include="Assets\Scripts\VR\Test.cs" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\Scripts\OSC\UnityOSC-master\ProjectSettings\ProjectVersion.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Mads/Documents/GitHub/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
