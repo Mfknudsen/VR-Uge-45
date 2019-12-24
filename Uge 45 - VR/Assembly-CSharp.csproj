@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\Puzzels\_Key\Keyhole.cs" />
      <Compile Include="Assets\Scripts\Puzzels\_Lever\Lever.cs" />
      <Compile Include="Assets\Scripts\Puzzels\_PressurePlate\PressurePlate.cs" />
+     <Compile Include="Assets\Scripts\Rooms\Bookshelf_1.cs" />
      <Compile Include="Assets\Scripts\VR\Test.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -90,31 +91,31 @@
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/Mads/Documents/GitHub/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/Mads/Documents/GitHub/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/Mads/Documents/GitHub/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/Mads/Documents/GitHub/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/Mads/Documents/GitHub/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/Mads/Documents/GitHub/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/Mads/Documents/GitHub/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/Mads/Documents/GitHub/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/Mads/Documents/GitHub/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -300,7 +301,7 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/Managed/UnityEditor.dll</HintPath>
  </Reference>
  <Reference Include="Valve.Newtonsoft.Json">
- <HintPath>C:/Users/Mads/Documents/GitHub/VR-Uge-45/Uge 45 - VR/Assets/VR/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Assets/VR/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

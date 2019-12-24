@@ -5,7 +5,7 @@ using UnityEngine;
 public class Detection_1 : MonoBehaviour
 {
     public Puzzel_1 P;
-
+    public GameObject Teleportpoint;
     public bool t;
 
     void Update()
@@ -14,6 +14,7 @@ public class Detection_1 : MonoBehaviour
         {
             P.D_Complete.active = false;
             P.D_Complete.SwitchOpenClosed();
+            Teleportpoint.SetActive(false);
             t = false;
         }
     }
@@ -24,6 +25,7 @@ public class Detection_1 : MonoBehaviour
         {
             P.D_Complete.active = false;
             P.D_Complete.SwitchOpenClosed();
+            Teleportpoint.SetActive(false);
         }
     }
 }
