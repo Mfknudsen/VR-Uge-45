@@ -6,216 +6,118 @@ using UnityEngine;
 
 public class Puzzel : MonoBehaviour
 {
-    public bool CheckAllActive(List<bool> actives)
+    //"protected" means only this and script that have inherited from this script can used the funtions.
+
+    //Get a list of bools and check if theyre all active. Will return a bool.
+    protected bool CheckAllActive(List<bool> actives)
     {
-        for (int i = 0; i < actives.Count; i++)
+        for (int i = 0; i < actives.Count; i++)  //Running through the list.
         {
-            if (actives[i] != true)
+            if (actives[i] != true)  //Check is the current bool is active.
             {
-                return false;
+                return false; //If even one of the list bools isn't active then it will return false;
             }
         }
-
-        return true;
+        return true;  //If all the bools in the list is true then it will return true.
     }
 
-    public bool CheckAllKeysActive(List<GameObject> keyholes)
+    //Get a list of keyholes and check if theyre all active. Will return a bool.
+    protected bool CheckAllKeysActive(List<Keyhole> keyholes)
     {
-        int t = 0;
-        List<Keyhole> k = new List<Keyhole>();
-
-        for (int j = 0; j < keyholes.Count; j++)
+        for (int i = 0; i < keyholes.Count; i++)  //Running through the list.
         {
-            if (keyholes[j].GetComponent<Lever>() != null)
+            if (keyholes[i].checkCorrectKey() != true)  //Check if the current keyhole has the correct key in it. Check if it is active.
             {
-                k.Add(keyholes[j].GetComponent<Keyhole>());
+                return false;  //If even one of the list keyholes isn't active then it will return false;
             }
         }
+        return true;  //If all the keyholes in the list is true then it will return true.
+    }
 
-        for (int i = 0; i < keyholes.Count; i++)
+    //Get a list of pressure plates and check if theyre all active. Will return a bool.
+    protected bool CheckAllPressurePlatesActive(List<PressurePlate> pressurePlates)
+    {
+        for (int i = 0; i < pressurePlates.Count; i++)  //Running through the list.
         {
-            if (k[i].checkCorrectKey() == true)
+            if (pressurePlates[i].active != true)  //Check if the current pressure plate is active.
             {
-                t++;
-            }
-            else
-            {
-                return false;
+                return false;  //If even one of the pressure plates isn't active then it will return false;
             }
         }
-        if (t == k.Count)
+        return true;  //If all pressure plates is active then it will return true.
+    }
+
+    //Get a list of levers and check if theyre all active. Will return a bool.
+    protected bool CheckAllLeverActive(List<Lever> levers)
+    {
+        for (int i = 0; i < levers.Count; i++)  //Running through the list.
         {
-            return true;
+            if (levers[i].active == true)  //Check if the current lever is active.
+            {
+                return false;  //If even one of the levers isn't active then it will return false.
+            }
+        }
+        return true;  //If all levers is active then it will return true.
+    }
+
+    //Get a list of levers and check the average progres of the levers. Will return a float between 0 and 100.
+    protected float CheckAllLeverProgress(List<Lever> levers)
+    {
+        float tempProgress = 0;  //Starting the average progress.
+
+        for (int i = 0; i < levers.Count; i++)  //Running through the list.
+        {
+            tempProgress += levers[i].CountProcent();  //Adding the progress of the current lever to the average lever.
+        }
+
+        tempProgress = Mathf.Ceil(tempProgress / levers.Count);  //Dividing the collected progress of all the levers by the number of levers and then getting the highest closest int from the result.
+
+        if (tempProgress < 0)  //If the average progress is less then 0 procent then make it 0 procent.
+        {
+            tempProgress = 0;
+        }
+        else if (tempProgress > 100)  //If the average progress is greater then 100 procent then make it 100 procent.
+        {
+            tempProgress = 100;
+        }
+
+        return tempProgress;  //Returning the average progress.
+    }
+
+    protected void OpenDoorByActive(bool active, Door door)
+    {
+        door.active = active;
+
+        door.SwitchOpenClosed();
+    }
+
+    protected void OpenDoorByProcent(float progress, Door door)
+    {
+        Vector3 t = door.ClosedTransform + ((door.OpenTransform - door.ClosedTransform) / 100 * progress);
+
+        door.targetTransform = t;
+    }
+
+    protected void MoveCraneByProcent(float progressX, float progressY, float progressZ, Crane crane)
+    {
+
+        Crane c = crane.GetComponent<Crane>();
+
+        c.progressX = progressX;
+        c.progressY = progressY;
+        c.progressZ = progressZ;
+
+    }
+
+    protected void SwitchCraneClawByActive(bool active, Crane crane)
+    {
+        if (active == true)
+        {
+            crane.LockClaw();
         }
         else
         {
-            return false;
-        }
-    }
-
-    public bool CheckAllPressurePlatesActive(List<GameObject> pressurePlates)
-    {
-        int t = 0;
-        List<PressurePlate> p = new List<PressurePlate>();
-
-        for (int j = 0; j < pressurePlates.Count; j++)
-        {
-            if (pressurePlates[j].GetComponent<Lever>() != null)
-            {
-                p.Add(pressurePlates[j].GetComponent<PressurePlate>());
-            }
-        }
-
-        for (int i = 0; i < p.Count; i++)
-        {
-            if (p[i].active == true)
-            {
-                t++;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        if (t == p.Count)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool CheckAllLeverActive(List<GameObject> levers)
-    {
-        int t = 0;
-        List<Lever> l = new List<Lever>();
-
-        for (int j = 0; j < levers.Count; j++)
-        {
-            if (levers[j].GetComponent<Lever>() != null)
-            {
-                l.Add(levers[j].GetComponent<Lever>());
-            }
-        }
-
-        for (int i = 0; i < levers.Count; i++)
-        {
-            if (l[i].active == true)
-            {
-                t++;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        if (t == l.Count)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public float CheckAllLeverProgress(List<GameObject> levers)
-    {
-        float tempProgress = 0;
-        List<Lever> l = new List<Lever>();
-
-        for (int j = 0; j < levers.Count; j++)
-        {
-            if (levers[j].GetComponent<Lever>() != null)
-            {
-                l.Add(levers[j].GetComponent<Lever>());
-            }
-        }
-
-
-        for (int i = 0; i < l.Count; i++)
-        {
-            tempProgress += l[i].CountProcent();
-        }
-
-        tempProgress = Mathf.Ceil(tempProgress / l.Count);
-
-        return tempProgress;
-    }
-
-    public void OpenDoorByActive(bool active, GameObject door)
-    {
-        if (door.GetComponent<Door>() != null)
-        {
-            Door d = door.GetComponent<Door>();
-
-            if (active == true)
-            {
-                d.active = true;
-            }
-            else
-            {
-                d.active = false;
-            }
-
-            d.SwitchOpenClosed();
-        }
-        else
-        {
-            Debug.Log("Missing Component: Door");
-        }
-    }
-
-    public void OpenDoorByProcent(float progress, GameObject door)
-    {
-        if (door.GetComponent<Door>() != null)
-        {
-            Door d = door.GetComponent<Door>();
-            Vector3 t = d.ClosedTransform + ((d.OpenTransform - d.ClosedTransform) / 100 * progress);
-
-            door.transform.position = t;
-        }
-        else
-        {
-            Debug.Log("Missing Component: Door");
-        }
-    }
-
-    public void MoveCraneByProcent(float progressX, float progressY, float progressZ, GameObject crane)
-    {
-        if (crane.GetComponent<Crane>() != null)
-        {
-            Crane c = crane.GetComponent<Crane>();
-
-            c.progressX = progressX;
-            c.progressY = progressY;
-            c.progressZ = progressZ;
-        }
-        else
-        {
-            Debug.Log("Missing Component: Crane");
-        }
-    }
-
-    public void SwitchCraneClawByActive(bool active, GameObject crane)
-    {
-        if (crane.GetComponent<Crane>() != null)
-        {
-            Crane c = crane.GetComponent<Crane>();
-            if (active == true)
-            {
-                c.LockClaw();
-            }
-            else
-            {
-                c.ReleaseClaw();
-            }
-        }
-        else
-        {
-            Debug.Log("Missing Component: Crane");
+            crane.ReleaseClaw();
         }
     }
 }

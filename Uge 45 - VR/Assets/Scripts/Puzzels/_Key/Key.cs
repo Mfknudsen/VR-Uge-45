@@ -32,7 +32,6 @@ public class Key : MonoBehaviour
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
-        RB.useGravity = false;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
     }

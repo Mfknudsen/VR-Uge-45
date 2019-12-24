@@ -5,7 +5,6 @@ using UnityEngine;
 public class Keyhole : MonoBehaviour
 {
     #region  public DATA
-    [HideInInspector]
     public string keyword = "";
 
     [HideInInspector]
@@ -29,6 +28,11 @@ public class Keyhole : MonoBehaviour
     {
         Visual = GetComponent<MeshRenderer>();
         Visual.enabled = false;
+
+        if (correctKey.GetComponent<Key>() != null)
+        {
+            correctKey.GetComponent<Key>().keyword = keyword;
+        }
     }
 
     void Update()

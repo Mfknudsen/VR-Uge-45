@@ -45,6 +45,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Detection\Detection_1.cs" />
      <Compile Include="Assets\Scripts\OSC\TEST_OSC.cs" />
      <Compile Include="Assets\Scripts\OSC\UnityOSC-master\Assets\Extra\Scripts\Instantiator.cs" />
      <Compile Include="Assets\Scripts\OSC\UnityOSC-master\Assets\Extra\Scripts\ReceiveAll.cs" />

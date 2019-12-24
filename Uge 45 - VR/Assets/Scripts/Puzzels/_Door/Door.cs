@@ -16,32 +16,45 @@ public class Door : MonoBehaviour
     public Vector3 OpenTransform;
     [HideInInspector]
     public Vector3 ClosedTransform;
+    [HideInInspector]
+    public Vector3 targetTransform;
+    [HideInInspector]
+    public bool byProcent = false;
     #endregion
 
     #region private DATA
-    Vector3 targetTransform;
     #endregion
 
     void Start()
     {
-        OpenTransform = Open.transform.position;
-        ClosedTransform = transform.position;
-
-        if (active == true)
+        if (byProcent == false)
         {
-            transform.position = OpenTransform;
-            targetTransform = OpenTransform;
+            OpenTransform = Open.transform.position;
+            ClosedTransform = transform.position;
+
+            if (active == true)
+            {
+                transform.position = OpenTransform;
+                targetTransform = OpenTransform;
+            }
+            else
+            {
+                transform.position = ClosedTransform;
+                targetTransform = ClosedTransform;
+            }
         }
         else
         {
-            transform.position = ClosedTransform;
-            targetTransform = ClosedTransform;
+            active = true;
         }
     }
 
     void Update()
     {
-        MoveDoor();
+        if (byProcent == false)
+        {
+            MoveDoor();
+        }
     }
 
     public void MoveDoor()
@@ -56,11 +69,11 @@ public class Door : MonoBehaviour
     {
         if (active == true)
         {
-            targetTransform = ClosedTransform;
+            targetTransform = OpenTransform;
         }
         else
         {
-            targetTransform = OpenTransform;
+            targetTransform = ClosedTransform;
         }
     }
 }

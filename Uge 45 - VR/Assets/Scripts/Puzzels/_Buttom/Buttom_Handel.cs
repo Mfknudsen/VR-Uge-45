@@ -7,6 +7,10 @@ public class Buttom_Handel : MonoBehaviour
 {
     public Buttom B;
 
+    void Start(){
+        B.SwitchActive(true);
+    }
+
     void OnDetachedFromHand()
     {
         if(B != null){

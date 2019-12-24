@@ -16,10 +16,6 @@ public class Lever : MonoBehaviour
     public bool active = false;
     [HideInInspector]
     public float progressInProcent = 0;
-
-    [Header("Optional Input")]
-    public Material material;
-
     [Header("TEMP BUTTOMS:")]
     public bool SWITCH_LOCK = false;
     bool lockHandel = true;
@@ -37,7 +33,14 @@ public class Lever : MonoBehaviour
         minRot = Quaternion.Euler(-45, 0, 0);
         maxRot = Quaternion.Euler(-45, 180, 0);
 
-        Joint.transform.localRotation = maxRot;
+        if (active == true)
+        {
+            Joint.transform.localRotation = maxRot;
+        }
+        else
+        {
+            Joint.transform.localRotation = minRot;
+        }
         Handel.transform.position = Top.transform.position;
     }
 
@@ -51,13 +54,6 @@ public class Lever : MonoBehaviour
         }
 
         LockHandelTransform();
-
-        TEMPLOCKHANDEL();
-
-        if (material != null)
-        {
-            SwitchColor();
-        }
     }
 
     void RotateTowardsHandel()
@@ -67,29 +63,32 @@ public class Lever : MonoBehaviour
         Vector3 tempJoint = Joint.transform.localPosition;
         tempJoint.x = 0;
         lookDirection = tempHandel - tempJoint;
-        targetRotation = Quaternion.LookRotation(lookDirection);
-
-        if (targetRotation.y == 0 && targetRotation.z == 0)
+        if (lookDirection.y >= minRot.eulerAngles.y)
         {
-            Joint.transform.localRotation = targetRotation;
+            targetRotation = Quaternion.LookRotation(lookDirection);
 
-            if (targetRotation.eulerAngles.x > minRot.eulerAngles.x)
+            if (targetRotation.y == 0 && targetRotation.z == 0)
             {
-                Joint.transform.localRotation = minRot;
+                Joint.transform.localRotation = targetRotation;
+
+                if (targetRotation.eulerAngles.x > minRot.eulerAngles.x)
+                {
+                    Joint.transform.localRotation = minRot;
+                }
+
+                lastHandelPosition = Handel.transform.position;
             }
-
-            lastHandelPosition = Handel.transform.position;
-        }
-        else if (targetRotation.x == 0 && targetRotation.w == 0)
-        {
-            Joint.transform.localRotation = targetRotation;
-
-            if (targetRotation.eulerAngles.x > maxRot.eulerAngles.x)
+            else if (targetRotation.x == 0 && targetRotation.w == 0)
             {
-                Joint.transform.localRotation = maxRot;
-            }
+                Joint.transform.localRotation = targetRotation;
 
-            lastHandelPosition = Handel.transform.position;
+                if (targetRotation.eulerAngles.x > maxRot.eulerAngles.x)
+                {
+                    Joint.transform.localRotation = maxRot;
+                }
+
+                lastHandelPosition = Handel.transform.position;
+            }
         }
     }
 
@@ -108,6 +107,16 @@ public class Lever : MonoBehaviour
         }
 
         tempProcent = tempProcent / 3.6f;
+
+        if (tempProcent < 0)
+        {
+            tempProcent = 0;
+        }
+        else if (tempProcent > 100)
+        {
+            tempProcent = 100;
+        }
+
         progressInProcent = Mathf.Ceil(tempProcent);
         return progressInProcent;
     }
@@ -123,51 +132,12 @@ public class Lever : MonoBehaviour
             active = true;
         }
     }
-    
+
     public void LockHandelTransform()
     {
         if (lockHandel == true)
         {
             Handel.transform.position = Top.transform.position;
-        }
-    }
-
-    void OnDetachedFromHand()
-    {
-        lockHandel = true;
-    }
-
-    void OnAttachedToHand()
-    {
-        lockHandel = false;
-    }
-
-    void TEMPLOCKHANDEL()
-    {
-        if (SWITCH_LOCK)
-        {
-            if (lockHandel)
-            {
-                lockHandel = false;
-                SWITCH_LOCK = false;
-            }
-            else
-            {
-                lockHandel = true;
-                SWITCH_LOCK = false;
-            }
-        }
-    }
-
-    void SwitchColor()
-    {
-        if (active == true)
-        {
-            material.SetColor("_Color", Color.green);
-        }
-        else
-        {
-            material.SetColor("_Color", Color.red);
         }
     }
 }

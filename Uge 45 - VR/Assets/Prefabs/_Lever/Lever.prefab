@@ -111,7 +111,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3982241472992633641
 Transform:
@@ -153,7 +153,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b401b714aad1058498c3814c4d21202c, type: 2}
+  - {fileID: 2100000, guid: 9461247f277d785479a85ebda5f3aae2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -202,7 +202,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3097153896236771532
 Transform:
@@ -238,7 +238,7 @@ MonoBehaviour:
   Top: {fileID: 5321039486533088236}
   active: 0
   progressInProcent: 0
-  material: {fileID: 2100000, guid: b401b714aad1058498c3814c4d21202c, type: 2}
+  material: {fileID: 0}
   SWITCH_LOCK: 0
 --- !u!1 &6092893409330384735
 GameObject:

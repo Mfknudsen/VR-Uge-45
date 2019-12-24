@@ -7,8 +7,13 @@ using UnityEngine;
 public class Buttom : MonoBehaviour
 {
     #region public DATA
-    public bool active = false;
+    [Header("Required Input:")]
     public GameObject Visual;
+    [HideInInspector]
+    public bool active = false;
+    public Transform rest;
+    [Header("TEMP BUTTOMS:")]
+    public bool ACTIVATE = false;
     #endregion
 
     #region private DATA
@@ -20,17 +25,29 @@ public class Buttom : MonoBehaviour
     void Start()
     {
         downTransform = transform.position;
-        restTransform = Visual.transform.position;
+        restTransform = rest.transform.position;
         SwitchActive(false);
     }
 
     void Update()
     {
         MoveButtom();
+
+        if (ACTIVATE == true)
+        {
+            TEMP();
+        }
     }
 
     void MoveButtom()
     {
+        if (transform.position != downTransform)
+        {
+            targetTransform = targetTransform - (downTransform - transform.position);
+            downTransform = transform.position;
+            restTransform = rest.transform.position;
+        }
+
         if (Visual.transform.position != targetTransform)
         {
             Visual.transform.position = Vector3.Lerp(Visual.transform.position, targetTransform, 0.1f);
@@ -42,12 +59,26 @@ public class Buttom : MonoBehaviour
         if (isInHand == true)
         {
             targetTransform = downTransform;
-            active = false;
+            active = true;
         }
         else
         {
             targetTransform = restTransform;
-            active = true;
+            active = false;
         }
+    }
+
+    void TEMP()
+    {
+        if (active)
+        {
+            SwitchActive(false);
+        }
+        else
+        {
+            SwitchActive(true);
+        }
+
+        ACTIVATE = false;
     }
 }
