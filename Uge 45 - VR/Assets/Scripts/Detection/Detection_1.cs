@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Detection_1 : MonoBehaviour
 {
-    public Puzzel_1 P;
+    public Puzzel_1 Puzzel;
     public GameObject Teleportpoint;
-    public bool t;
+    public Bookshelf_1 Bookshelf;
+    public bool trigger;
 
     void Update()
     {
-        if (t)
+        if (trigger)
         {
-            P.D_Complete.active = false;
-            P.D_Complete.SwitchOpenClosed();
+            Puzzel.D_Complete.active = false;
+            Puzzel.D_Complete.SwitchOpenClosed();
             Teleportpoint.SetActive(false);
-            t = false;
+            Bookshelf.active = true;
+            trigger = false;
         }
     }
 
@@ -23,9 +25,10 @@ public class Detection_1 : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            P.D_Complete.active = false;
-            P.D_Complete.SwitchOpenClosed();
+            Puzzel.D_Complete.active = false;
+            Puzzel.D_Complete.SwitchOpenClosed();
             Teleportpoint.SetActive(false);
+            Bookshelf.active = true;
         }
     }
 }

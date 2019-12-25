@@ -19,6 +19,7 @@ public class Bookshelf_1 : MonoBehaviour
     {
         if (active == true && transform.position != Closed)
         {
+            Debug.Log("Active");
             if (transform.position.x < Closed.x)
             {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(Closed.x, transform.position.y, transform.position.z), 0.5f * Time.deltaTime);
