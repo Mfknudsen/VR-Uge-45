@@ -64,7 +64,6 @@ public class Puzzel_1 : Puzzel
                             {
                                 OpenDoorByActive(true, D_Complete);  //Open the the final door to exit the room.
                                 puzzelActive = true;  //The puzzel is now complete and it will no longer check the different stages.
-                                Debug.Log("Puzzel: 1, Complete");
                             }
                         }
                     }
