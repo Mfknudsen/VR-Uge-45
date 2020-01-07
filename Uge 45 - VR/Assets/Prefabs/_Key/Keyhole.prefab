@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8650029625141127184}
   - component: {fileID: 8650029625141127199}
   - component: {fileID: 8650029625141127198}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Keyhole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyword: 
-  currentKey: {fileID: 0}
   correctKey: {fileID: 0}
+  currentKey: {fileID: 0}
   active: 0
   keysInRange: 0
   Visual: {fileID: 0}

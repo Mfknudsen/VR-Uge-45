@@ -22,9 +22,6 @@ public class Key : MonoBehaviour
 
     [HideInInspector]
     public GameObject currentKeyhole;  //What keyhole this key is currently placed in.
-
-    [Header("TEMP BUTTOMS")]  //Temperary input. Used to start functions for testing.
-    public bool PLACE_KEY = false;  //Bool used to start a function.
     #endregion
 
     #region private Data
@@ -37,15 +34,6 @@ public class Key : MonoBehaviour
         //Setting the start position and rotation.
         originalPosition = transform.position;
         originalRotation = transform.rotation;
-    }
-
-    private void Update()
-    {
-        if (PLACE_KEY == true)  //If the temp bool is true then run the function and reset the bool.
-        {
-            placeKey();  //Place the key in the closest keyhole.
-            PLACE_KEY = false;
-        }
     }
 
     public void reset()  //Resets this key.
@@ -130,5 +118,13 @@ public class Key : MonoBehaviour
         RB.useGravity = false;
         RB.velocity = Vector3.zero;
         RB.angularVelocity = Vector3.zero;
+    }
+
+    void OnDetachedFromHand(){
+        placeKey();
+    }
+
+    void OnAttachedToHand(){
+        detachKey();
     }
 }

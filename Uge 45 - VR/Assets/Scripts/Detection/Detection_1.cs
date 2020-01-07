@@ -1,13 +1,17 @@
-﻿using System.Collections;
+﻿#region Systems
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#endregion
 
 public class Detection_1 : MonoBehaviour
 {
+    #region public DATA
     public Puzzel_1 Puzzel;
     public GameObject Teleportpoint;
     public Bookshelf_1 Bookshelf;
     public bool trigger;
+    #endregion
 
     void Update()
     {

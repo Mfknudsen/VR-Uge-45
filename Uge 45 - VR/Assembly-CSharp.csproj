@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Detection\Detection_1.cs" />
+     <Compile Include="Assets\Scripts\OSC\HUE_Controller.cs" />
      <Compile Include="Assets\Scripts\OSC\TEST_OSC.cs" />
      <Compile Include="Assets\Scripts\OSC\UnityOSC-master\Assets\Extra\Scripts\Instantiator.cs" />
      <Compile Include="Assets\Scripts\OSC\UnityOSC-master\Assets\Extra\Scripts\ReceiveAll.cs" />
@@ -59,6 +60,7 @@
      <Compile Include="Assets\Scripts\OSC\UnityOSC-master\Assets\SendPositionOnUpdate.cs" />
      <Compile Include="Assets\Scripts\Puzzels\PlayablePuzzels\Puzzel_1\DisplayScreen_1.cs" />
      <Compile Include="Assets\Scripts\Puzzels\PlayablePuzzels\Puzzel_1\Puzzel_1.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\PlayablePuzzels\Puzzel_2\Puzzel_2.cs" />
      <Compile Include="Assets\Scripts\Puzzels\PuzzelSystem\Puzzel.cs" />
      <Compile Include="Assets\Scripts\Puzzels\_Buttom\Buttom.cs" />
      <Compile Include="Assets\Scripts\Puzzels\_Buttom\Buttom_Handel.cs" />
@@ -68,8 +70,11 @@
      <Compile Include="Assets\Scripts\Puzzels\_Key\Key.cs" />
      <Compile Include="Assets\Scripts\Puzzels\_Key\Keyhole.cs" />
      <Compile Include="Assets\Scripts\Puzzels\_Lever\Lever.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_Lever\Lever_Handel.cs" />
      <Compile Include="Assets\Scripts\Puzzels\_PressurePlate\PressurePlate.cs" />
      <Compile Include="Assets\Scripts\Rooms\Bookshelf_1.cs" />
+     <Compile Include="Assets\Scripts\VR\Player_Marking.cs" />
+     <Compile Include="Assets\Scripts\VR\Return_To_Parent.cs" />
      <Compile Include="Assets\Scripts\VR\Test.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
