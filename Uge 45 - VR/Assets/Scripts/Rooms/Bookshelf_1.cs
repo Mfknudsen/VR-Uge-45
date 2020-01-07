@@ -1,14 +1,21 @@
-﻿using System.Collections;
+﻿#region Systems
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#endregion
 
 public class Bookshelf_1 : MonoBehaviour
 {
+    #region public DATA
     public bool active = false;
     public Transform Open;
+    #endregion
+
+    #region private DATA
     Vector3 Closed;
     bool Done = false;
-
+    #endregion
+    
     void Start()
     {
         Closed = transform.position;

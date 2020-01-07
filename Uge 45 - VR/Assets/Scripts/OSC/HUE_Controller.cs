@@ -8,13 +8,9 @@ public class HUE_Controller : MonoBehaviour
 {
     #region public DATA
     [Header("OSC Settings:")]
-    public OSC OSC;
-    [Tooltip("Visual Debuging From Inspector")]
-    public string IP_Visual;
-    [Tooltip("Visual Debuging From Inspector")]
-    public int outPort_Visual, inPort_Visual;
+    public OSC OSC;  //The OSC script that is used to send, receive and setup the osc functions in this script.
     [Tooltip("Address for input and output")]
-    public string inAddress = "/wek/output", outAddress = "/wek/inputs";
+    public string inAddress = "/", outAddress = "/";
     #endregion
 
     #region private DATA
@@ -23,15 +19,12 @@ public class HUE_Controller : MonoBehaviour
 
     void Start()
     {
-        IP_Visual = OSC.outIP;
-        outPort_Visual = OSC.outPort;
-        inPort_Visual = OSC.inPort;
-
-        OSC.SetAddressHandler(inAddress, ReceiveInfoFromHUE);
+        OSC.SetAddressHandler(inAddress, ReceiveInfoFromHUE);  //Use the functions ReceiveInfoFromHUE when the message contains the equel to inAddress.
     }
 
-    public void ReceiveInfoScript(Vector3 RGB)
+    public void ReceiveInfoScript(Vector3 RGB)  //Get the RGB value to send to HUE.
     {
+        //Making sure the values are usable.
         if (RGB != null)
         {
             if (RGB.x < 0)
@@ -65,28 +58,30 @@ public class HUE_Controller : MonoBehaviour
         }
     }
 
-    void SendInfoToHUE(Vector3 RGB)
+    void SendInfoToHUE(Vector3 RGB)  //Sending the RGB values as three float values in an osc message.
     {
         if (CanSendOSC == true && RGB != null)
         {
-            OscMessage message = new OscMessage();
+            OscMessage message = new OscMessage();  //Making a new osc message-
             message.address = outAddress;
             message.values.Add(RGB.x);
             message.values.Add(RGB.y);
             message.values.Add(RGB.z);
 
-            OSC.Send(message);
+            OSC.Send(message);  //Sending the osc message through the OSC script.
         }
     }
 
-    void ReceiveInfoFromHUE(OscMessage message)
+    void ReceiveInfoFromHUE(OscMessage message)  //Get and print the returned value from HUE.
     {
         string toPrint = "";
-        for (int i = 0; i < message.values.Count; i++){
-            toPrint = toPrint + "Value["+i+1+"]: "+ message.values[i]+". ";
+        for (int i = 0; i < message.values.Count; i++)
+        {
+            toPrint = toPrint + "Value[" + i + 1 + "]: " + message.values[i] + ". ";
         }
 
-        if(toPrint != ""){
+        if (toPrint != "")
+        {
             Debug.Log(toPrint);
         }
     }
