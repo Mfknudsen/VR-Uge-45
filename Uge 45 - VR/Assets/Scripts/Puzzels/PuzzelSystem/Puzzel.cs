@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Puzzel : MonoBehaviour
 {
-    //"protected" means only this and script that have inherited from this script can used the funtions.
+    //"protected" means only this and script that have inherited from this script can used the funtions as well as this script itself.
 
     //Gets a list of bools and check if theyre all active. Will return a bool.
     protected bool CheckAllActive(List<bool> actives)
@@ -110,6 +110,7 @@ public class Puzzel : MonoBehaviour
         crane.progressY = progressY;
         crane.progressZ = progressZ;
 
+        crane.MoveCrane();
     }
 
     //Gets a bool and a crane. Will switch the cranes claw between lock or release based on the bool.
