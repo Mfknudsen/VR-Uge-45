@@ -45,8 +45,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\VR\SteamVR\WindowsHelper\SteamVR_Windows_Editor_Helper.cs" />
-     <None Include="Assets\VR\SteamVR\WindowsHelper\SteamVR_Windows_EditorHelper.asmdef" />
+     <Compile Include="Assets\Packages\VR\SteamVR\WindowsHelper\SteamVR_Windows_Editor_Helper.cs" />
+     <None Include="Assets\Packages\VR\SteamVR\WindowsHelper\SteamVR_Windows_EditorHelper.asmdef" />
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
@@ -252,7 +252,7 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Valve.Newtonsoft.Json">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Assets/VR/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Assets/Packages/VR/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

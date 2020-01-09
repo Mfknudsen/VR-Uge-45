@@ -29,11 +29,6 @@ public class TEST_OSC : MonoBehaviour
         osc.SetAddressHandler(inAddress, ReceiveOSC); //Tell the OSC script to use the function "ReceiveOSC" if the message has the adress "inAddress"
     }
 
-    void Update()
-    {
-
-    }
-
     void SendOSC()
     {
         OscMessage message = new OscMessage(); //Making a new empty message
