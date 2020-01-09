@@ -56,7 +56,7 @@
     {
       "name": "/actions/default/in/TrackPad",
       "type": "vector2",
-      "requirement": "mandatory"
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/out/Haptic",

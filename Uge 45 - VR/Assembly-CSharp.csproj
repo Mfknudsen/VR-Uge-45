@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
+    <CscToolPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f3\Editor\Data\Tools\RoslynScripts</CscToolPath>
+    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -44,6 +46,14 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f3\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f3\Editor\Data\Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Packages\Aura\Attributes\ColorCircularPickerAttribute.cs" />
      <Compile Include="Assets\Packages\Aura\Attributes\Texture3DPreviewAttribute.cs" />
@@ -195,34 +205,31 @@
      <None Include="Assets\Packages\Aura\Shaders\Shaders\StoreShadowDataShader.shader" />
      <None Include="Assets\Packages\Aura\Shaders\Shaders\StoreDirectionalSpotLightCookieMap.shader" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -401,11 +408,8 @@
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/Managed/UnityEditor.dll</HintPath>
- </Reference>
  <Reference Include="Valve.Newtonsoft.Json">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Assets/Packages/VR/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Assets/Packages/VR/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -764,28 +768,28 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="SteamVR_Actions.csproj">
-      <Project>{210B0E7D-BD2C-AE65-7C2F-200D735B5B72}</Project>
+      <Project>{7EE5A702-3CE6-626A-F493-9D95680F8468}</Project>
       <Name>SteamVR_Actions</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR_Input_Editor.csproj">
-      <Project>{CEA6231F-D0FC-014E-F9FE-4C61EBF2E29C}</Project>
+      <Project>{4F6C9C2B-0AEE-FA6D-C5E9-59C3DA283007}</Project>
       <Name>SteamVR_Input_Editor</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR_Editor.csproj">
-      <Project>{4A54A781-861E-6E8F-9B02-F30DEAA493F4}</Project>
+      <Project>{3FCA39B8-23C5-1FB6-767E-E428A6B98C9C}</Project>
       <Name>SteamVR_Editor</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR.csproj">
-      <Project>{5D592F3B-CC3F-6BE1-FC7B-1AD4069B065E}</Project>
+      <Project>{629A2300-3B57-285A-AFD6-35AD0F60F1B6}</Project>
       <Name>SteamVR</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR_Windows_EditorHelper.csproj">
-      <Project>{B457168A-6FC5-68BF-020C-8E8E048F69C1}</Project>
+      <Project>{B1344405-23E7-7EE0-0C36-025EFC3B569E}</Project>
       <Name>SteamVR_Windows_EditorHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

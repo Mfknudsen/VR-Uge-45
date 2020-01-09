@@ -304,7 +304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &133520302
 Transform:
   m_ObjectHideFlags: 0
@@ -333,12 +333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8e89e08249c744e9354c8cc7f382a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSensitivity: 0.1
-  MaxSpeed: 1
-  LeftHand: 1
-  RightHand: 2
-  PlayerTransform: {fileID: 2055475980}
-  MoveSpeed: 10
 --- !u!4 &155531922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3097153896236771532, guid: db34085aabdb82246b1583bfbe7ec4c2,
@@ -1851,7 +1845,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001887185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -3}
+  m_LocalPosition: {x: 0, y: -0.407, z: -3}
   m_LocalScale: {x: 3, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1124330119}
@@ -3366,6 +3360,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 546077168}
     m_Modifications:
+    - target: {fileID: 1981653130484221074, guid: 9a0e2734b3721b54e8e826dbc403afe7,
+        type: 3}
+      propertyPath: active
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5977221977712898161, guid: 9a0e2734b3721b54e8e826dbc403afe7,
         type: 3}
       propertyPath: m_LocalPosition.x

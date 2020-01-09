@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
+    <CscToolPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f3\Editor\Data\Tools\RoslynScripts</CscToolPath>
+    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,6 +47,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f3\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f3\Editor\Data\Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
      <Compile Include="Assets\Packages\VR\SteamVR\Input\Editor\SteamVR_CopyExampleInputFiles.cs" />
      <Compile Include="Assets\Packages\VR\SteamVR\Input\Editor\SteamVR_Input_ActionManifest_Manager.cs" />
      <Compile Include="Assets\Packages\VR\SteamVR\Input\Editor\SteamVR_Input_ActionSetPropertyEditor.cs" />
@@ -66,19 +76,16 @@
      <Compile Include="Assets\Packages\VR\SteamVR\Input\Editor\SteamVR_Skeleton_PoserEditor.cs" />
      <None Include="Assets\Packages\VR\SteamVR\Input\Editor\SteamVR_Input_Editor.asmdef" />
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.TestRunner">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -257,9 +264,6 @@
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/Managed/UnityEditor.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.VR">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
  </Reference>
@@ -270,10 +274,10 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Valve.Newtonsoft.Json">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Assets/Packages/VR/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Assets/Packages/VR/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>C:/Users/Bruger/Desktop/Skole/3.G/Digital Teknik/VR-Uge-45/Uge 45 - VR/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>D:/GitHub/VR-Uge-45-2/Uge 45 - VR/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f3/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -632,12 +636,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="SteamVR.csproj">
-      <Project>{5D592F3B-CC3F-6BE1-FC7B-1AD4069B065E}</Project>
+      <Project>{629A2300-3B57-285A-AFD6-35AD0F60F1B6}</Project>
       <Name>SteamVR</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
