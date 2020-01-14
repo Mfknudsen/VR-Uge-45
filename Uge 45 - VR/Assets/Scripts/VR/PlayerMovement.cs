@@ -7,7 +7,7 @@ using Valve.VR;
 
 public class PlayerMovement : MonoBehaviour
 {
-/*    #region public DATA
+    #region public DATA
     [Header("Required Input:")]
     public float MoveSensitivity = 0.1f;
     public float MaxSpeed = 1;
@@ -58,7 +58,8 @@ public class PlayerMovement : MonoBehaviour
             MoveSpeed = 0;
         }
 
-        if(TrackPadTouch.GetState(RightHand)){
+        if (TrackPadTouch.GetState(RightHand))
+        {
             MoveSpeed += Trackpad.GetAxis(RightHand).y * MoveSensitivity;
             MoveSpeed = Mathf.Clamp(MoveSpeed, -MaxSpeed, MaxSpeed);
 
@@ -66,5 +67,5 @@ public class PlayerMovement : MonoBehaviour
         }
 
         PlayerTransform.position = Vector3.Lerp(PlayerTransform.position, PlayerTransform.position + movement, 0.9f);
-    }*/
+    }
 }

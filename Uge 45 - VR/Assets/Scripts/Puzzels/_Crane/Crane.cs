@@ -13,16 +13,23 @@ public class Crane : MonoBehaviour
     public Transform xMin;
     public Transform xMax, yMin, yMax, zMin, zMax;
     public Transform xzPos;
-    public GameObject Claw;
+    public Crane_Claw Claw;
+    public string Keyword = "";
+    public List<GameObject> ObjectsInRange = new List<GameObject>();
     #endregion
 
     #region private DATA
     float xDir, yDir, zDir;
-    List<GameObject> ObjectsInRange = new List<GameObject>();
+    bool ClawActive = false;
+    GameObject parentToReturnTo = null;
+    GameObject ObjectInClaw = null;
     #endregion
 
     void Start()
     {
+        Claw.Keyword = Keyword;
+        Claw.Crane = this;
+
         xDir = xMax.position.x - xMin.position.x;
         yDir = yMax.position.y - yMin.position.y;
         zDir = zMax.position.z - zMin.position.z;
@@ -66,21 +73,47 @@ public class Crane : MonoBehaviour
 
     public void LockClaw()
     {
+        if (ObjectsInRange.Count > 0 && ClawActive == false)
+        {
+            //Set a standard to compare with other objects if any.
+            GameObject closestObject = ObjectsInRange[0];
+            float shortestDistance = Vector3.Distance(transform.position, closestObject.transform.position);
 
+            for (int i = 1; i < ObjectsInRange.Count; i++)  //Running through the list.
+            {
+                if (shortestDistance > Vector3.Distance(transform.position, ObjectsInRange[i].transform.position))  //If the distance is less then the previus distance then the new closest object is the current object.
+                {
+                    closestObject = ObjectsInRange[i];  //New closest object from index.
+                }
+            }
+            parentToReturnTo = closestObject.transform.parent.gameObject;
+            closestObject.transform.parent = Claw.transform;
+            ObjectInClaw = closestObject;
+            ClawActive = true;
+
+            if (ObjectInClaw.GetComponent<Rigidbody>() != null)
+            {
+                Rigidbody r = ObjectInClaw.GetComponent<Rigidbody>();
+                r.useGravity = false;
+                r.velocity = Vector3.zero;
+                r.angularVelocity = Vector3.zero;
+            }
+        }
     }
 
     public void ReleaseClaw()
     {
+        if (ClawActive == true)
+        {
+            ObjectInClaw.transform.parent = parentToReturnTo.transform;
 
-    }
-
-    void OnTriggerEnter()
-    {
-
-    }
-
-    void OnTriggerExit()
-    {
-
+            if (ObjectInClaw.GetComponent<Rigidbody>() != null)
+            {
+                Rigidbody r = ObjectInClaw.GetComponent<Rigidbody>();
+                r.useGravity = true;
+                r.velocity = Vector3.zero;
+                r.angularVelocity = Vector3.zero;
+            }
+        }
     }
 }
