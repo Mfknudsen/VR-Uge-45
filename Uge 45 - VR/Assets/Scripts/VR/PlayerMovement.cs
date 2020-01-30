@@ -31,8 +31,11 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         Trackpad = SteamVR_Input.GetVector2Action("TrackPad");
-        CalcTransform.position = Vector3.zero;
-        CalcTransform.rotation = Quaternion.Euler(Vector3.zero);
+        if (CalcTransform != null)
+        {
+            CalcTransform.position = Vector3.zero;
+            CalcTransform.rotation = Quaternion.Euler(Vector3.zero);
+        }
     }
 
     void FixedUpdate()
@@ -41,31 +44,34 @@ public class PlayerMovement : MonoBehaviour
     }
     void Movement()
     {
-        CalcTransform.rotation = Quaternion.Euler(new Vector3(0,Head.transform.rotation.eulerAngles.y,0));
-        
-        if (TrackPadMovementActive)
+        if (CalcTransform != null)
         {
-            Vector2 moveDir = Vector3.zero;
+            CalcTransform.rotation = Quaternion.Euler(new Vector3(0, Head.transform.rotation.eulerAngles.y, 0));
 
-            if (TEMP_UseKeysToMove == false)
+            if (TrackPadMovementActive)
             {
-                if (Trackpad.GetAxis(LeftHand) != null)
+                Vector2 moveDir = Vector3.zero;
+
+                if (TEMP_UseKeysToMove == false)
                 {
-                    moveDir = Trackpad.GetAxis(LeftHand);
+                    if (Trackpad.GetAxis(LeftHand) != null)
+                    {
+                        moveDir = Trackpad.GetAxis(LeftHand);
+                    }
                 }
-            }
-            else
-            {
-                moveDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            }
+                else
+                {
+                    moveDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                }
 
-            float y = transform.position.y;
+                float y = transform.position.y;
 
-            transform.position += ((CalcTransform.forward * moveDir.y) + (CalcTransform.right * moveDir.x)) * moveSpeed;
+                transform.position += ((CalcTransform.forward * moveDir.y) + (CalcTransform.right * moveDir.x)) * moveSpeed;
 
-            if (transform.position.y != y)
-            {
-                transform.position = new Vector3(transform.position.x, y, transform.position.z);
+                if (transform.position.y != y)
+                {
+                    transform.position = new Vector3(transform.position.x, y, transform.position.z);
+                }
             }
         }
     }
