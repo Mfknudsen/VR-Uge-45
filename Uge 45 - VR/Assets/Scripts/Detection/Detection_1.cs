@@ -35,4 +35,15 @@ public class Detection_1 : MonoBehaviour
             Bookshelf.active = true;
         }
     }
+
+    public void TEMP_Activate()
+    {
+        if (Puzzel.D_Complete.active)
+        {
+            Puzzel.D_Complete.active = false;
+            Puzzel.D_Complete.SwitchOpenClosed();
+            Teleportpoint.SetActive(false);
+            Bookshelf.active = true;
+        }
+    }
 }

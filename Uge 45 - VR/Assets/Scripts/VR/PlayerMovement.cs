@@ -9,63 +9,64 @@ public class PlayerMovement : MonoBehaviour
 {
     #region public DATA
     [Header("Required Input:")]
-    public float MoveSensitivity = 0.1f;
-    public float MaxSpeed = 1;
+    public float moveSpeed = 5;
+    [Tooltip("Used to determin which hand is used")]
     public SteamVR_Input_Sources LeftHand;
+    [Tooltip("Used to determin which hand is used")]
     public SteamVR_Input_Sources RightHand;
-    public Transform PlayerTransform;
-    public float MoveSpeed = 0;
+    public bool TrackPadMovementActive = true;
+    public Transform Head;
+    [Header("TEMP:")]
+    public bool TEMP_UseKeysToMove;
     #endregion
 
     #region private DATA
+    float MoveSpeed = 0;
     Vector3 Move;
     SteamVR_Action_Boolean TrackPadTouch;
     SteamVR_Action_Vector2 Trackpad;
-    Transform CameraTransform, HeadTransform;
+    Transform CalcTransform;
     #endregion
 
     void Start()
     {
         Trackpad = SteamVR_Input.GetVector2Action("TrackPad");
-
-        CameraTransform = SteamVR_Render.Top().origin;
-        HeadTransform = SteamVR_Render.Top().head;
+        CalcTransform.position = Vector3.zero;
+        CalcTransform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     void FixedUpdate()
     {
-        Head();
         Movement();
-    }
-    void Head()
-    {
-        Vector3 oldPos = CameraTransform.position;
-        Quaternion oldRot = CameraTransform.rotation;
-
-        PlayerTransform.eulerAngles = new Vector3(0, HeadTransform.rotation.eulerAngles.y, 0);
-
-        CameraTransform.position = oldPos;
-        CameraTransform.rotation = oldRot;
     }
     void Movement()
     {
-        Vector3 orientEuler = new Vector3(0, PlayerTransform.eulerAngles.y, 0);
-        Quaternion orient = Quaternion.Euler(orientEuler);
-        Vector3 movement = Vector3.zero;
-
-        if (TrackPadTouch.GetStateUp(RightHand))
+        CalcTransform.rotation = Quaternion.Euler(new Vector3(0,Head.transform.rotation.eulerAngles.y,0));
+        
+        if (TrackPadMovementActive)
         {
-            MoveSpeed = 0;
+            Vector2 moveDir = Vector3.zero;
+
+            if (TEMP_UseKeysToMove == false)
+            {
+                if (Trackpad.GetAxis(LeftHand) != null)
+                {
+                    moveDir = Trackpad.GetAxis(LeftHand);
+                }
+            }
+            else
+            {
+                moveDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            }
+
+            float y = transform.position.y;
+
+            transform.position += ((CalcTransform.forward * moveDir.y) + (CalcTransform.right * moveDir.x)) * moveSpeed;
+
+            if (transform.position.y != y)
+            {
+                transform.position = new Vector3(transform.position.x, y, transform.position.z);
+            }
         }
-
-        if (TrackPadTouch.GetState(RightHand))
-        {
-            MoveSpeed += Trackpad.GetAxis(RightHand).y * MoveSensitivity;
-            MoveSpeed = Mathf.Clamp(MoveSpeed, -MaxSpeed, MaxSpeed);
-
-            movement += orient * (MoveSpeed * PlayerTransform.forward) * Time.deltaTime;
-        }
-
-        PlayerTransform.position = Vector3.Lerp(PlayerTransform.position, PlayerTransform.position + movement, 0.9f);
     }
 }

@@ -16,6 +16,7 @@ public class Puzzel_1 : Puzzel
     public PressurePlate P_Stage2;  //Getting the pressure plate for stage 2 of the puzzel. 
     public Keyhole K_Stage3;  //Getting the keyhole for stage 3 of the puzzel.
     public Lever L_Stage4;  //Getting the lever for stage 4 of the puzzel.
+    public GameObject Dev_ButtomToCloseDoor;
     #endregion
 
     //All private data. Can only be affect by this script. Can only be seen in the inspector if [SerializeField] is used.
@@ -24,6 +25,10 @@ public class Puzzel_1 : Puzzel
     bool puzzelActive = false;  //Bool to seen when the hole puzzel is complete.
     #endregion
 
+    void Start()
+    {
+        Dev_ButtomToCloseDoor.SetActive(false);
+    }
     void Update()
     {
         if (puzzelActive == false)  //If the puzzel is not complete then run through the stages of the puzzel.
@@ -64,6 +69,8 @@ public class Puzzel_1 : Puzzel
                             {
                                 OpenDoorByActive(true, D_Complete);  //Open the the final door to exit the room.
                                 puzzelActive = true;  //The puzzel is now complete and it will no longer check the different stages.
+
+                                Dev_ButtomToCloseDoor.SetActive(true);
                             }
                         }
                     }

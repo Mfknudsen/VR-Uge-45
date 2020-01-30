@@ -28,9 +28,8 @@ public class Test : MonoBehaviour
     #region private Data
     private Transform HL;
     private Transform HR;
-
     private SteamVR_Action_Vector2 trackPad;
-
+    float moveSpeed = 5f;
     #endregion
 
     void Start()
@@ -67,5 +66,16 @@ public class Test : MonoBehaviour
     {
         HR.transform.position = trackedHandRight.transform.position;
         HR.transform.rotation = trackedHandRight.transform.rotation;
+    }
+
+    void Movement()
+    {
+        Vector3 moveDir = Vector3.zero;
+        if (trackPad.GetAxis(LeftHand) != null)
+        {
+            moveDir = trackPad.GetAxis(LeftHand);
+        }
+
+        transform.position += ((transform.forward * trackPad.GetAxis(LeftHand).y)+(transform.right * trackPad.GetAxis(LeftHand).x)).normalized * moveSpeed;
     }
 }

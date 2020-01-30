@@ -48,7 +48,6 @@ public class TEST_OSC : MonoBehaviour
         }*/
 
         transform.position = new Vector3(message.GetFloat(0), message.GetFloat(1), message.GetFloat(2));
-
     }
 
     //IEnumerators is functions that can be delayed using realtime seconds without stopping the next code from running.
