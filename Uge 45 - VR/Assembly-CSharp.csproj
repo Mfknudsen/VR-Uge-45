@@ -141,6 +141,7 @@
      <Compile Include="Assets\Scripts\Puzzels\_PressurePlate\PressurePlate.cs" />
      <Compile Include="Assets\Scripts\Puzzels\_Trapdoor\floor_move.cs" />
      <Compile Include="Assets\Scripts\Rooms\Bookshelf_1.cs" />
+     <Compile Include="Assets\Scripts\UI\Pause_Unpause.cs" />
      <Compile Include="Assets\Scripts\UI\PlayerHelpText.cs" />
      <Compile Include="Assets\Scripts\VR\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\VR\Return_To_Parent.cs" />

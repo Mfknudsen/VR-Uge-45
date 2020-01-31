@@ -26,7 +26,8 @@ public class PlayerHelpText : MonoBehaviour
         Rendere = GetComponent<Image>();
         Rendere.enabled = false;
 
-        StartCoroutine(startCoroutine());
+        currentAnimation = startCoroutine();
+        StartCoroutine(currentAnimation);
     }
 
     void Update()
@@ -43,9 +44,22 @@ public class PlayerHelpText : MonoBehaviour
 
     public void ChangeHelpTextOnScreen(int step)
     {
+        //NOTE:
+        //Using "\n" in a string will be the same as when you use the Enter key to start a new line.
+        //"Hello World" wil result in:
+        //Hello World
+        //
+        //"Hello \n World" will result in:
+        //Hello
+        // World
+        //And "Hello \nWorld" will result in:
+        //Hello
+        //World
+
         if (currentAnimation != null)
         {
             StopCoroutine(currentAnimation);
+            textMesh.text = "";
         }
         bool nextConteniusText = false;
 
@@ -53,28 +67,33 @@ public class PlayerHelpText : MonoBehaviour
         {
             string newHint = "Hello Player 1. \n\nThis box will show hints and other messages.";
             nextConteniusText = true;
-            currentAnimation = AnimateText(newHint, 0, nextConteniusText);
+            currentAnimation = AnimateText(newHint, textMesh.text.Length, nextConteniusText);
             StartCoroutine(currentAnimation);
             currentHint = 1;
         }
         else if (step == 2)
         {
             string line1 = "You and Player 2 will need to work together to beat this Escape Room!";
-            string line2 = "The text in this box is only visible to you, so the only way for Player 2 to know what it is writing is for you to tell them.";
+            string line2 = "The text in this box is only visible to you, so the only way for Player 2 to know what is writing is for you to tell them.";
             string newHint = line1 + "\n\n" + line2;
             nextConteniusText = true;
-            currentAnimation = AnimateText(newHint, 0, nextConteniusText);
+            currentAnimation = AnimateText(newHint, textMesh.text.Length, nextConteniusText);
             StartCoroutine(currentAnimation);
             currentHint = 2;
         }
         else if (step == 3)
         {
             string newHint = "Some objects is interactable. \n\nThese objects will show a YELLOW outline when one of your hands is near it!";
-            currentAnimation = AnimateText(newHint, 0, nextConteniusText);
+            currentAnimation = AnimateText(newHint, textMesh.text.Length, nextConteniusText);
             StartCoroutine(currentAnimation);
             currentHint = 3;
         }
 
+    }
+
+    public void ConteniuAnimtaion()
+    {
+        StartCoroutine(currentAnimation);
     }
 
     IEnumerator AnimateText(string newText, int nextCharacter, bool nextConteniusText)
