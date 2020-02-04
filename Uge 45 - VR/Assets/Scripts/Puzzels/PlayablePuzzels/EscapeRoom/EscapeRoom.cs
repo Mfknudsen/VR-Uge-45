@@ -9,6 +9,7 @@ public class EscapeRoom : Puzzel
     #region public DATA
     public List<Keyhole> Keyholes = new List<Keyhole>();
     public List<Key> Keys = new List<Key>();
+    public Buttom Buttom;
     #endregion
 
     #region private DATA
@@ -50,7 +51,7 @@ public class EscapeRoom : Puzzel
                 break;
             }
         }
-        if (t)
+        if (t && Buttom.active)
         {
             if (CheckAllKeysActive(Keyholes))
             {
