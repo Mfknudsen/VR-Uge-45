@@ -22,10 +22,12 @@ public class Key : MonoBehaviour
 
     [HideInInspector]
     public GameObject currentKeyhole;  //What keyhole this key is currently placed in.
+    public Vector3 Color;
     #endregion
 
     #region private Data
     Rigidbody RB;  //The rigidbody of this object.
+    Transform Parent;
     #endregion
     private void Start()
     {
@@ -34,6 +36,8 @@ public class Key : MonoBehaviour
         //Setting the start position and rotation.
         originalPosition = transform.position;
         originalRotation = transform.rotation;
+
+        Parent = transform.parent;
     }
 
     public void reset()  //Resets this key.
@@ -45,17 +49,11 @@ public class Key : MonoBehaviour
         }
 
         RB.isKinematic = false;  //This key is no longer still.
-        RB.useGravity = false;  //This key no longer uses gravity.
+        RB.useGravity = true;  //This key no longer uses gravity.
         RB.velocity = Vector3.zero;  //Its velocity based on physics is reset.
         RB.angularVelocity = Vector3.zero;  //Its rotation velocity based on physics is reset.
         transform.position = originalPosition;  //Its position is reset.
         transform.rotation = originalRotation;  //Its rotation is reset.
-    }
-
-    public void addGrav()  //Adds gravity to this key.
-    {
-        RB.useGravity = true;
-        RB.isKinematic = false;
     }
 
     public void placeKey()  //Places this key in the closest keyhole.
@@ -120,11 +118,19 @@ public class Key : MonoBehaviour
         RB.angularVelocity = Vector3.zero;
     }
 
-    void OnDetachedFromHand(){
+    void OnDetachedFromHand()
+    {
+        RB.isKinematic = false;
+        RB.useGravity = true;
+        RB.velocity = Vector3.zero;
+        RB.angularVelocity = Vector3.zero;
+        transform.parent = Parent;
+
         placeKey();
     }
 
-    void OnAttachedToHand(){
+    void OnAttachedToHand()
+    {
         detachKey();
     }
 }

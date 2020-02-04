@@ -49,22 +49,4 @@ public class TEST_OSC : MonoBehaviour
 
         transform.position = new Vector3(message.GetFloat(0), message.GetFloat(1), message.GetFloat(2));
     }
-
-    //IEnumerators is functions that can be delayed using realtime seconds without stopping the next code from running.
-    //void Start(){
-    //  IEnumerator ConstantDelayTest()
-    //  {
-    //      yield return new WaitForSeconds(5);
-    //      SendOSC();
-    //  }
-    //
-    //  float x = 1;
-    //}
-    //
-    //While the IEnumerator function may be placed before the x value will be set as 1, the code where x is being set will still execute before the "SendOSC" function inside the IEnumerator due to it being delayed by 5 seconds before executing the rest for the IEnumerator function.
-    IEnumerator ConstantDelayTest()
-    {
-        yield return new WaitForSeconds(5);
-        SendOSC();
-    }
 }

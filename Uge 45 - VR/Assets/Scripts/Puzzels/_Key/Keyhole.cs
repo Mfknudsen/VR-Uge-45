@@ -16,11 +16,12 @@ public class Keyhole : MonoBehaviour
     public int keysInRange = 0;  //All the keys that is in range of the keyhole. Based on a trigger collider.
     [HideInInspector]
     public MeshRenderer Visual;  //The visual rendere for this object. Used to create a highlight.
+    public GameObject Highlight;
     #endregion
 
     void Start()  //When the script starts.
     {
-        Visual = GetComponent<MeshRenderer>();  //Getting the rendere from the game object.
+        Visual = Highlight.GetComponent<MeshRenderer>();  //Getting the rendere from the game object.
         Visual.enabled = false;  //Making the object invisible.
 
         if (correctKey.GetComponent<Key>() != null)  //Making sure the object label as the correct key has is a key.
@@ -94,7 +95,7 @@ public class Keyhole : MonoBehaviour
 
     void updateKey()  //Updating the position and rotation of the current key placed in this keyhole to match the position and rotation of this keyhole.
     {
-        currentKey.transform.position = transform.position;
-        currentKey.transform.rotation = transform.rotation;
+        currentKey.transform.position = transform.position - new Vector3(0,0,0.1f);
+        currentKey.transform.rotation = Quaternion.Euler(270,270,270);
     }
 }

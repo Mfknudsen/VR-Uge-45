@@ -124,10 +124,13 @@
      <Compile Include="Assets\Scripts\OSC\HUE_Controller.cs" />
      <Compile Include="Assets\Scripts\OSC\TEST_API.cs" />
      <Compile Include="Assets\Scripts\OSC\TEST_OSC.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\PlayablePuzzels\EscapeRoom\EscapeRoom.cs" />
      <Compile Include="Assets\Scripts\Puzzels\PlayablePuzzels\Puzzel_1\DisplayScreen_1.cs" />
      <Compile Include="Assets\Scripts\Puzzels\PlayablePuzzels\Puzzel_1\Puzzel_1.cs" />
      <Compile Include="Assets\Scripts\Puzzels\PlayablePuzzels\Puzzel_2\Puzzel_2.cs" />
      <Compile Include="Assets\Scripts\Puzzels\PuzzelSystem\Puzzel.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_Book\Book.cs" />
+     <Compile Include="Assets\Scripts\Puzzels\_Book\Book_Handel.cs" />
      <Compile Include="Assets\Scripts\Puzzels\_Buttom\Buttom.cs" />
      <Compile Include="Assets\Scripts\Puzzels\_Buttom\Buttom_Handel.cs" />
      <Compile Include="Assets\Scripts\Puzzels\_Crane\Crane.cs" />
