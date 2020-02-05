@@ -10,6 +10,7 @@ public class EscapeRoom : Puzzel
     public List<Keyhole> Keyholes = new List<Keyhole>();
     public List<Key> Keys = new List<Key>();
     public Buttom Buttom;
+    public string Color;
     #endregion
 
     #region private DATA
@@ -36,22 +37,7 @@ public class EscapeRoom : Puzzel
 
     void Update()
     {
-        bool t = false;
-
-        for (int i = 0; i < Keyholes.Count; i++)
-        {
-            if (Keyholes[i].currentKey == null)
-            {
-                t = false;
-                break;
-            }
-            else if (i == Keyholes.Count - 1)
-            {
-                t = true;
-                break;
-            }
-        }
-        if (t && Buttom.active)
+        if (Buttom.active)
         {
             if (CheckAllKeysActive(Keyholes))
             {
@@ -81,6 +67,7 @@ public class EscapeRoom : Puzzel
         if (t)
         {
             kh.correctKey = k.gameObject;
+            kh.Color = k.Color;
         }
 
         if (kh.correctKey == null)

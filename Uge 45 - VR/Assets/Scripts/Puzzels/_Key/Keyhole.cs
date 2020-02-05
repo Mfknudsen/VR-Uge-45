@@ -17,6 +17,7 @@ public class Keyhole : MonoBehaviour
     [HideInInspector]
     public MeshRenderer Visual;  //The visual rendere for this object. Used to create a highlight.
     public GameObject Highlight;
+    public string Color;
     #endregion
 
     void Start()  //When the script starts.
@@ -44,7 +45,7 @@ public class Keyhole : MonoBehaviour
         {
             Key k = other.gameObject.GetComponent<Key>();  //Getting the key script.
 
-            if (k.currentKeyhole == null && k.keyword == keyword)  //Checks if the key has the same keyword as this keyhole and if there already is a key in this keyhole.
+            if (currentKey == null && k.keyword == keyword)  //Checks if the key has the same keyword as this keyhole and if there already is a key in this keyhole.
             {
                 keysInRange += 1;  //One more key is in range of this keyhole.
                 Visual.enabled = true;  //This keyhole will now show a highlight.
