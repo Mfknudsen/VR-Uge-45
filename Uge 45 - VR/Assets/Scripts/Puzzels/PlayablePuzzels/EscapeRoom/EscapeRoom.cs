@@ -10,7 +10,7 @@ public class EscapeRoom : Puzzel
     public List<Keyhole> Keyholes = new List<Keyhole>();
     public List<Key> Keys = new List<Key>();
     public Buttom Buttom;
-    public string Color;
+    public string ColorVec;
     #endregion
 
     #region private DATA
@@ -67,7 +67,7 @@ public class EscapeRoom : Puzzel
         if (t)
         {
             kh.correctKey = k.gameObject;
-            kh.Color = k.Color;
+            kh.Color = k.ColorName;
         }
 
         if (kh.correctKey == null)
@@ -103,9 +103,9 @@ public class EscapeRoom : Puzzel
 
             OscMessage message = new OscMessage();
             message.address = "VR";
-            message.values.Add(k.Color.x);
-            message.values.Add(k.Color.y);
-            message.values.Add(k.Color.z);
+            message.values.Add(k.ColorVec.x);
+            message.values.Add(k.ColorVec.y);
+            message.values.Add(k.ColorVec.z);
             OSC.Send(message);
         }
     }
