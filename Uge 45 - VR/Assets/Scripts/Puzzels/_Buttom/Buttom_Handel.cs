@@ -12,6 +12,15 @@ public class Buttom_Handel : MonoBehaviour
     public Transform Visual;  //The visual part of the buttom.
     #endregion
 
+    #region private DATA
+    Transform Parent;
+    #endregion
+
+    void Start()
+    {
+        Parent = transform.parent;
+    }
+
     void Update()
     {
         transform.position = Visual.position;  //This handel returns to visual part.
@@ -20,6 +29,7 @@ public class Buttom_Handel : MonoBehaviour
     void OnDetachedFromHand()
     {
         B.SwitchActive(false);  //When the object is no longer being hold then the buttom is no longer active.
+        transform.parent = Parent;
     }
 
     void OnAttachedToHand()

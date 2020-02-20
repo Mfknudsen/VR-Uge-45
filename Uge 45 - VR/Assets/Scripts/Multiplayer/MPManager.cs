@@ -53,6 +53,11 @@ public class MPManager : MonoBehaviourPunCallbacks
         Debug.Log("Player has joined a room.");
         Debug.Log("There is currently " + PhotonNetwork.CountOfPlayers + " in this room.");
 
+        GivePlayerClass();
+    }
+
+    public void GivePlayerClass()
+    {
         if (PhotonNetwork.CountOfPlayers == 1)
         {
             Player = "VR";

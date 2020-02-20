@@ -14,6 +14,7 @@ public class EscapeRoom : Puzzel, IPunObservable
     public List<Keyhole> Keyholes = new List<Keyhole>();
     public List<Key> Keys = new List<Key>();
     public Buttom Buttom;
+    public GameObject Done;
     #endregion
 
     #region private DATA
@@ -21,11 +22,12 @@ public class EscapeRoom : Puzzel, IPunObservable
     PhotonView PhotonView;
     bool isPressed = false;
     List<string> names = new List<string>();
+    bool Complete = false;
     #endregion
 
     void Start()
     {
-        SendOSC(0);
+        Done.SetActive(false);
 
         if (manager.Player == "VR")
         {
@@ -42,12 +44,20 @@ public class EscapeRoom : Puzzel, IPunObservable
             {
                 Keys[i].keyword = "E";
             }
+
+            if (OSC != null)
+            {
+                SendOSC(0f);
+            }
+        }
+        else if (manager.Player == null)
+        {
+            manager.GivePlayerClass();
         }
     }
 
     void Update()
     {
-        Debug.Log(manager.Player);
         if (manager.Player == "VR")
         {
             if (OSC == null)
@@ -65,14 +75,18 @@ public class EscapeRoom : Puzzel, IPunObservable
                 {
                     Keys[i].keyword = "E";
                 }
+
+                if (OSC != null)
+                {
+                    SendOSC(0f);
+                }
             }
 
             if (Buttom.active)
             {
                 if (CheckAllKeysActive(Keyholes))
                 {
-                    Debug.Log("You have escaped!");
-                    SendOSC(1);
+                    Complete = true;
                 }
                 else
                 {
@@ -80,9 +94,9 @@ public class EscapeRoom : Puzzel, IPunObservable
                 }
             }
         }
-        if (manager.Player == "Instructor")
+        else if (manager.Player == "Instructor")
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < names.Count; i++)
             {
                 string temp = names[i];
 
@@ -96,6 +110,17 @@ public class EscapeRoom : Puzzel, IPunObservable
                 }
             }
         }
+        else if (manager.Player == null)
+        {
+            manager.GivePlayerClass();
+        }
+
+        if (Complete)
+        {
+            Done.SetActive(true);
+            Debug.Log("You have escaped!");
+            SendOSC(1f);
+        }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -105,17 +130,20 @@ public class EscapeRoom : Puzzel, IPunObservable
             stream.SendNext(Keyholes[0].Color + Keyholes[0].gameObject.name);
             stream.SendNext(Keyholes[1].Color + Keyholes[1].gameObject.name);
             stream.SendNext(Keyholes[2].Color + Keyholes[2].gameObject.name);
+            stream.SendNext(Complete);
         }
         else if (stream.IsReading)
         {
             names = new List<string>();
-            for(int i = 0; i < Colors.Count; i++){
+            for (int i = 0; i < Colors.Count; i++)
+            {
                 Colors[i].SetActive(false);
             }
 
             names.Add((string)stream.ReceiveNext());
             names.Add((string)stream.ReceiveNext());
             names.Add((string)stream.ReceiveNext());
+            Complete = (bool)stream.ReceiveNext();
         }
     }
 
@@ -170,13 +198,12 @@ public class EscapeRoom : Puzzel, IPunObservable
         }
     }
 
-    void SendOSC(int msg)
+    void SendOSC(float i)
     {
-        for (int i = 0; i < Keyholes.Count; i++)
-        {
-            OscMessage message = new OscMessage();
-            message.values.Add(msg);
-            OSC.Send(message);
-        }
+        OscMessage msg = new OscMessage();
+        msg.address = "message";
+        msg.values.Add(i);
+        OSC.Send(msg);
+        Debug.Log("Send to OSC: " + i);
     }
 }
