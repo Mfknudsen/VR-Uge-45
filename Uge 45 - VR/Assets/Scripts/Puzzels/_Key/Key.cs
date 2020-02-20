@@ -22,7 +22,6 @@ public class Key : MonoBehaviour
 
     [HideInInspector]
     public GameObject currentKeyhole;  //What keyhole this key is currently placed in.
-    public Vector3 ColorVec;
     public string ColorName;
     #endregion
 

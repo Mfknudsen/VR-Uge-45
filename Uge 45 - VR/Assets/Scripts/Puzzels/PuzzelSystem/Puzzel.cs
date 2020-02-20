@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon;
+using Photon.Pun;
 #endregion
 
-public class Puzzel : MonoBehaviour
+public class Puzzel : MonoBehaviourPun
 {
     //"protected" means only this and script that have inherited from this script can used the funtions as well as this script itself.
 

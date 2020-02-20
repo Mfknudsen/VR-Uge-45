@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6610477374700892723}
   - component: {fileID: 6610477374700892720}
   - component: {fileID: 224854552357610572}
-  - component: {fileID: 5762717468151399750}
   - component: {fileID: 7678450836465025396}
   m_Layer: 0
   m_Name: Key
@@ -102,6 +101,8 @@ MonoBehaviour:
   originalRotation: {x: 0, y: 0, z: 0, w: 0}
   keyholesInRange: []
   currentKeyhole: {fileID: 0}
+  ColorVec: {x: 0, y: 0, z: 0}
+  ColorName: 
 --- !u!114 &6610477374700892723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,20 +224,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactable: {fileID: 0}
---- !u!64 &5762717468151399750
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6610477374700892733}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: -1
-  m_Mesh: {fileID: -5546940888850326318, guid: c53b7639fb5fc3541b6675ba0134c2a4, type: 3}
 --- !u!65 &7678450836465025396
 BoxCollider:
   m_ObjectHideFlags: 0

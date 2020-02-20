@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 735ee8a5e734f3c4ba4684a04388c74b
+  - enabled: 1
+    path: Assets/Scenes/VR_EscapeRoom.unity
+    guid: 6d7c335c58938aa4abac17bd25f774a9
   m_configObjects: {}

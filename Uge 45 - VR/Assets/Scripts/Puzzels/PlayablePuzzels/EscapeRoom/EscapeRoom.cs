@@ -2,51 +2,120 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon;
+using Photon.Pun;
 #endregion
 
-public class EscapeRoom : Puzzel
+public class EscapeRoom : Puzzel, IPunObservable
 {
     #region public DATA
+    public MPManager manager;
+    public List<GameObject> Colors = new List<GameObject>();
     public List<Keyhole> Keyholes = new List<Keyhole>();
     public List<Key> Keys = new List<Key>();
     public Buttom Buttom;
-    public string ColorVec;
     #endregion
 
     #region private DATA
     OSC OSC;
+    PhotonView PhotonView;
+    bool isPressed = false;
+    List<string> names = new List<string>();
     #endregion
 
     void Start()
     {
-        OSC = GetComponent<OSC>();
+        SendOSC(0);
 
-        for (int i = 0; i < Keyholes.Count; i++)
+        if (manager.Player == "VR")
         {
-            Keyholes[i].keyword = "E";
-            GiveKeyKeyword(i);
-        }
+            OSC = GetComponent<OSC>();
+            PhotonView = GetComponent<PhotonView>();
 
-        for (int i = 0; i < Keys.Count; i++)
-        {
-            Keys[i].keyword = "E";
-        }
+            for (int i = 0; i < Keyholes.Count; i++)
+            {
+                Keyholes[i].keyword = "E";
+                GiveKeyKeyword(i);
+            }
 
-        SendOSC();
+            for (int i = 0; i < Keys.Count; i++)
+            {
+                Keys[i].keyword = "E";
+            }
+        }
     }
 
     void Update()
     {
-        if (Buttom.active)
+        Debug.Log(manager.Player);
+        if (manager.Player == "VR")
         {
-            if (CheckAllKeysActive(Keyholes))
+            if (OSC == null)
             {
-                Debug.Log("You have escaped!");
+                OSC = GetComponent<OSC>();
+                PhotonView = GetComponent<PhotonView>();
+
+                for (int i = 0; i < Keyholes.Count; i++)
+                {
+                    Keyholes[i].keyword = "E";
+                    GiveKeyKeyword(i);
+                }
+
+                for (int i = 0; i < Keys.Count; i++)
+                {
+                    Keys[i].keyword = "E";
+                }
             }
-            else
+
+            if (Buttom.active)
             {
-                resetOrder();
+                if (CheckAllKeysActive(Keyholes))
+                {
+                    Debug.Log("You have escaped!");
+                    SendOSC(1);
+                }
+                else
+                {
+                    resetOrder();
+                }
             }
+        }
+        if (manager.Player == "Instructor")
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                string temp = names[i];
+
+                for (int e = 0; e < Colors.Count; e++)
+                {
+                    if (Colors[e].name == temp)
+                    {
+                        Colors[e].SetActive(true);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(Keyholes[0].Color + Keyholes[0].gameObject.name);
+            stream.SendNext(Keyholes[1].Color + Keyholes[1].gameObject.name);
+            stream.SendNext(Keyholes[2].Color + Keyholes[2].gameObject.name);
+        }
+        else if (stream.IsReading)
+        {
+            names = new List<string>();
+            for(int i = 0; i < Colors.Count; i++){
+                Colors[i].SetActive(false);
+            }
+
+            names.Add((string)stream.ReceiveNext());
+            names.Add((string)stream.ReceiveNext());
+            names.Add((string)stream.ReceiveNext());
         }
     }
 
@@ -78,6 +147,12 @@ public class EscapeRoom : Puzzel
 
     public void resetOrder()
     {
+        Debug.Log("Reseting Keys");
+        for (int i = 0; i < Colors.Count; i++)
+        {
+            Colors[i].SetActive(false);
+        }
+
         for (int i = 0; i < Keyholes.Count; i++)
         {
             Keyhole K = Keyholes[i];
@@ -95,17 +170,12 @@ public class EscapeRoom : Puzzel
         }
     }
 
-    void SendOSC()
+    void SendOSC(int msg)
     {
         for (int i = 0; i < Keyholes.Count; i++)
         {
-            Key k = Keyholes[i].correctKey.GetComponent<Key>();
-
             OscMessage message = new OscMessage();
-            message.address = "VR";
-            message.values.Add(k.ColorVec.x);
-            message.values.Add(k.ColorVec.y);
-            message.values.Add(k.ColorVec.z);
+            message.values.Add(msg);
             OSC.Send(message);
         }
     }
